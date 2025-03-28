@@ -53,7 +53,7 @@ class Usuario{
         }else{
             return false;
         }    
-    }
+    } 
 
     public function chkPass($email, $senha){
         //passo 1: criar a consulta sql
