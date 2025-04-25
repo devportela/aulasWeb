@@ -6,7 +6,8 @@ $usuario = new Usuario();
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Senha segura
+    $senha = $_POST['senha']; // sem hash - **NÃO RECOMENDADO**
+
 
     if($usuario->cadastrar($nome, $email, $senha)){
         echo "Cadastro realizado com sucesso!";
@@ -15,3 +16,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 ?>
+ 
