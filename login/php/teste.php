@@ -6,7 +6,7 @@ $usuario = new Usuario();
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = $_POST['senha']; // sem hash - **NÃO RECOMENDADO**
+    $senha = $_POST['senha']; 
 
 
     if($usuario->cadastrar($nome, $email, $senha)){
