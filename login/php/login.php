@@ -1,5 +1,5 @@
 <?php
-require 'Usuario.class.php';
+require 'UsuarioOld.class.php';
 
 
 $usuario = new Usuario();

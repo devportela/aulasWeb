@@ -19,22 +19,23 @@ class Usuario{
     }
 
     public function cadastrar($nome, $email, $senha){
-        //primeiro passo: criar a consulta sql
+
         $sql = "INSERT INTO usuarios SET nome = :n, email = :e, senha = :s";
         
-        //segundo passo: passar a consulta para o metdo prepare do PDO
+
         $stmt = $this->pdo->prepare($sql);
 
-        //terceiro passo: para cada apelido, passar o valor correspondente
-        $stmt->bindValue(":n", $nome);
-        $stmt->bindValue(":e", $email);
+
+        $stmt->bindValue(":n", $nome); //metodo de ligacao com o bando de dados
+        
+        $stmt->bindValue(":e", $email); //metodo mais usado pra linkar o codigo com o banco de dados
         $stmt->bindValue(":s", $senha);
 
         //quarto passo: executar o comando
         return $stmt->execute();
     }
 
-    //fiz para testar
+
     function apagar($id){
         $sql = "DELETE FROM usuarios WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
@@ -55,33 +56,31 @@ class Usuario{
     }
 
     public function chkUser($email){
-        //passo 1: criar a consulta sql
+
         $sql = "SELECT * FROM usuarios WHERE email = :e";
 
-        //passo 2: passar a consulta para o método prepare do PDO
+
         $stmt = $this->pdo->prepare($sql);
 
-        //passo 3: para cada apelido, passar o valor correspondente
         $stmt->bindValue(":e", $email);
-        
-        //passo 4: executar o comando
+
         $stmt->execute();
         return $stmt->rowCount() > 0;
 
     }
 
     public function chkPass($email, $senha){
-        //passo 1: criar a consulta sql
+
         $sql = "SELECT * FROM usuarios WHERE email = :e AND senha = :s";
 
-        //passo 2: passar a consulta para o método prepare do PDO
+
         $stmt = $this->pdo->prepare($sql);
 
-        //passo 3: para cada apelido, passar o valor correspondente
+
         $stmt->bindValue(":e", $email);
         $stmt->bindValue(":s", $senha);
         
-        //passo 4: executar o comando
+
         $stmt->execute();
 
         if ($stmt->rowCount() > 0){
